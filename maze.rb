@@ -18,4 +18,12 @@ class Maze
 	def is_finish? node
 		@finish == node
 	end
+
+	def render
+		@maze.each do |row|
+			print "\t"
+			row.each { |x| print  "#{x} " }
+			puts ''
+		end
+	end
 end

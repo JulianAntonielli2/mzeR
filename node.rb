@@ -1,7 +1,8 @@
 class Node
-	@x, @y
+	@y
+	@x
 
-	def initialize x, y
-		@x, @y = x, y
+	def initialize y, x
+		@y, @x = y, x
 	end 
 end
