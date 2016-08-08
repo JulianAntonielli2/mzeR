@@ -1,6 +1,11 @@
 # mzeR
 Simple maze solving software, written in Ruby.
 
+# Usage
+
+Run using `ruby main.rb maze_file.txt entry_block final_block`.
+
+For example, `ruby main.rb maze.txt [1, 0] [1, 5]`
 
 ## Mazes
 
@@ -8,6 +13,7 @@ Mazes should be entered as binary matrices, using 0s for walkable blocks, and 1s
 
 An example would be
 ```
+#maze.txt
       1 1 1 1 1 1
   ->  0 0 0 1 0 0 ->
       1 1 0 0 0 1
