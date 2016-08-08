@@ -12,7 +12,7 @@ For example, `ruby main.rb maze.txt [0, 1] [0, 6]`
 Mazes should be entered as binary matrices, using 0s for walkable blocks, and 1s for walls.
 
 An example would be
-```
+```ruby
 #maze.txt
      
         #entry    #finish     
