@@ -3,6 +3,7 @@ class Maze
 	attr_accessor :maze
 
 	@@symbol_parse = { 0 => :empty, 1 => :wall }
+	@@int_parse = { empty: 0, wall: 1}
 
 	@maze = []
 
@@ -39,7 +40,7 @@ class Maze
 	def render
 		@maze.each do |row|
 			print "\t"
-			row.each { |x| print  "#{x} " }
+			row.each { |x| print  "#{@@int_parse[x]} " }
 			puts ''
 		end
 	end

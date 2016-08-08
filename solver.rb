@@ -44,8 +44,7 @@ class Solver
 			end
 			current = moves.first
 		end
-		win
-		
+		win		
 	end
 
 	def win
@@ -56,7 +55,7 @@ class Solver
 	end
 
 	def terminate
-		puts "invalid maze, no way out."
+		puts "Invalid maze, no way out."
 		exit 0
 	end
 end
