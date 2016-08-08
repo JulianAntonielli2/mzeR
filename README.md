@@ -1,7 +1,7 @@
 # mzeR
 Simple maze solving software, written in Ruby.
 
-# Usage
+## Usage
 
 Run using `ruby main.rb maze_file.txt entry_block final_block`.
 
