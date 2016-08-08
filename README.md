@@ -5,7 +5,7 @@ Simple maze solving software, written in Ruby.
 
 Run using `ruby main.rb maze_file.txt entry_block final_block`.
 
-For example, `ruby main.rb maze.txt [0, 1] [0, 6]`
+For example, the following should be run to solve the maze below `ruby main.rb maze.txt [0, 1] [0, 6]`.
 
 ## Mazes
 
