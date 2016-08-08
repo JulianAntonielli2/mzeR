@@ -1,3 +1,3 @@
 require_relative 'maze'
-require_relative 'node'
-require_relative 'stack'
+require_relative 'position'
+require_relative 'solver'
