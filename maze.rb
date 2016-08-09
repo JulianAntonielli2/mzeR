@@ -3,38 +3,55 @@ class Maze
 	attr_accessor :maze
 
 	@@symbol_parse = { 0 => :empty, 1 => :wall }
-	@@int_parse = { empty: 0, wall: 1}
+
+	@@int_parse = Hash.new { |hash, key| hash[key] = key }	#Testing, for rendering solution purposes.
+	@@int_parse[:empty], @@int_parse[:wall] = 0, 1			#Look for more elegant way.
 
 	@maze = []
-
-	@start
-	@finish
 
 	def initialize mz, start, finish
 		@start = start
 		@finish = finish
 
 		if mz.is_a? Array
-			mz_matrix = []
-
-			mz.each_with_index do |row, index|
-				mz_matrix[index] = []
-				row.each_with_index do |x, i|
-					if x.is_a? Symbol
-						mz_matrix[index][i] = x
-					else
-						mz_matrix[index][i] = @@symbol_parse[x]
-					end
-				end
-			end
-			@maze = mz_matrix
-		else
+			@maze = Maze.array_to_maze_matrix mz
+		elsif mz.is_a? File
 			@maze = Maze.get str #metodo de Maze o de str??	
 		end
 	end
 
-	def is_finish? node
-		@finish == node
+	def self.array_to_maze_matrix ari # Perhaps should be class method?
+		mz_matrix = []
+
+		ari.each_with_index do |row, index|
+			mz_matrix[index] = []
+			row.each_with_index do |x, i|
+				if x.is_a? Symbol
+					mz_matrix[index][i] = x
+				else
+					mz_matrix[index][i] = @@symbol_parse[x]
+				end
+			end
+		end
+		mz_matrix		
+	end
+
+	def self.file_to_maze_matrix file
+		mz_matrix = []
+		file.each do |line|
+			line.gsub!(/[(\t) ]/, '')
+			line.each do |char|
+				next if char == '#'
+				
+			end
+			 	
+		end
+	end
+
+
+
+	def is_finish? pos
+		@finish == pos
 	end
 
 	def render
@@ -67,7 +84,7 @@ class Maze
 
 		def []= (row, col = nil, val)
 		if row.is_a? Position
-			@maze[row.row, row.col] = val
+			@maze[row.row][row.col] = val
 		else
 			@maze[row][col] = val
 		end

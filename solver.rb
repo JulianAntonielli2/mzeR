@@ -52,7 +52,17 @@ class Solver
 		@steps.each_with_index do |step, index|
 			puts "\t #{index}. #{step}" if index > 0
 		end
+		puts ""
+		render_solution
 	end
+
+	def render_solution
+		@steps.each do |pos|
+			@initial_maze[pos] = "-" unless pos.nil?
+		end
+		@initial_maze.render
+	end
+
 
 	def terminate
 		puts "Invalid maze, no way out."
