@@ -10,6 +10,8 @@ class Position
 	end
 
 	def == pos
-		pos.is_a?(Position) && row == pos.row && col == pos.col
+		false unless pos.is_a?(Position)
+		
+		row == pos.row && col == pos.col
 	end
 end

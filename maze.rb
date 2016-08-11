@@ -1,3 +1,5 @@
+# Delegar metodos de maze. Hacer modulo maybe.
+
 class Maze
 	attr_reader :start, :finish
 	attr_accessor :maze
@@ -9,7 +11,7 @@ class Maze
 
 	@maze = []
 
-	def initialize mz, start, finish
+	def initialize mz, start = nil, finish = nil
 		@start = start
 		@finish = finish
 
@@ -18,7 +20,53 @@ class Maze
 		elsif mz.is_a? File
 			@maze = Maze.get str #metodo de Maze o de str??	
 		end
+
+		@start = find_endpoint if @start.nil?
+		@finish = find_endpoint @start if @finish.nil?
 	end
+
+	# Finds an endpoint. If given the starting position, it finds the exit to the maze.
+	def find_endpoint start = nil
+		[:top, :left, :bottom, :right].each { |side| sides[side] = maze_side(side) }
+
+		sides.each do |side| #Revisar este each!!!!
+			side.each_with_index do |block, index|
+				if block.walkable?
+					pos = get_position(side, index)
+					return pos if pos != start 
+				end
+			end
+		end
+
+	end
+
+	def maze_side side
+		side = []
+
+		case side
+		when :top
+			@maze.first
+		when :bottom
+			@maze.last
+		when :left
+			maze.each { |row| side << row.first }
+			side
+		when :right
+			maze.each { |row| side << row.last }
+			side
+		end
+	end
+
+	def get_position side, index
+		position_by_side = { top: 0, bottom: rows - 1, left: 0, right: columns - 1}
+		case side
+		when :top, :bottom
+			Position.new(position_by_side[side], index)
+		when :left, :right
+			Position.new(index, position_by_side)
+		end
+	end
+
 
 	def self.array_to_maze_matrix ari # Perhaps should be class method?
 		mz_matrix = []
@@ -48,7 +96,9 @@ class Maze
 		end
 	end
 
-
+	def walkable? val
+		val == :empty
+	end
 
 	def is_finish? pos
 		@finish == pos
@@ -82,12 +132,20 @@ class Maze
 		end
 	end
 
-		def []= (row, col = nil, val)
+	def []= (row, col = nil, val)
 		if row.is_a? Position
 			@maze[row.row][row.col] = val
 		else
 			@maze[row][col] = val
 		end
+	end
+
+	def rows
+		@maze.size		
+	end
+
+	def columns
+		@maze[0].size
 	end
 end
 
@@ -117,10 +175,6 @@ class WalkableMaze < Maze
  			moves << Position.new(*move_row) if walkable?(self[*move_row]) && node.row + i >= 0 && node.col + i >= 0
 		end
 		moves
-	end
-
-	def walkable? val
-		val == :empty
 	end
 
 	def visited? val
