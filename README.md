@@ -7,6 +7,9 @@ Run using `ruby main.rb maze_file.txt entry_block final_block`.
 
 For example, the following should be run to solve the maze below `ruby main.rb maze.txt [0, 1] [0, 6]`.
 
+
+<img src=https://puu.sh/qwWpw/040866b127.png width=350px>
+
 ## Mazes
 
 Mazes should be entered as binary matrices, using 0s for walkable blocks, and 1s for walls.
@@ -31,3 +34,4 @@ The user should input which endpoint is the starting block and which one is the 
 
 Blocks are referred using a `[row, column]` syntax: rows and columns are numbered starting from 0, and take successive integer values, from top to bottom, and from left to right, respectively.
 In the above example, the `[0, 1]` block is the entry (with value of 0), and the block `[0, 6]` is the final point.
+

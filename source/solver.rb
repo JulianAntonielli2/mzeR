@@ -13,8 +13,8 @@ class Solver
 		@internal_maze = WalkableMaze.new maze
 		@steps = [nil]
 
-		puts "First node: #{maze.start}"
-		puts "Last node: #{maze.finish}"
+		puts "First node:\t#{maze.start}"
+		puts "Last node:\t#{maze.finish}"
 	end
 
 	def solve
