@@ -7,8 +7,11 @@ Run using `ruby main.rb maze_file.txt entry_block final_block`.
 
 For example, the following should be run to solve the maze below `ruby main.rb maze.txt [0, 1] [0, 6]`.
 
-
-<img src=https://puu.sh/qwWpw/040866b127.png width=350px>
+<span title="Example run with preloaded maze">
+     <p align="center">
+          <img src=https://puu.sh/qwWpw/040866b127.png width=350px>
+     </p>
+</span>
 
 ## Mazes
 
